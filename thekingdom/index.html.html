@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE KINGDOM OF FOOD | Ate Vitarte</title>
+<link rel="icon" href="https://files.catbox.moe/7v2q9x.ico">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#00ff41;font-family:'Cinzel Decorative',cursive;overflow-x:hidden;background:radial-gradient(circle at top,#002200,#000 60%)}
+.hero{min-height:100vh;background:linear-gradient(rgba(0,0,0,.96),rgba(0,20,0,.98)),ur[](https://files.catbox.moe/b3v3v8.jpg) center/cover fixed;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative}
+h1{font-size:clamp(5rem,18vw,16rem);color:#00ff41;text-shadow:0 0 50px #00ff41,0 0 100px #00cc00;letter-spacing:20px;animation:g 3s infinite alternate}
+._subtitle{font-size:clamp(3rem,10vw,7rem);color:#00ff80;text-shadow:0 0 80px #00cc00;letter-spacing:12px;margin-top:-40px}
+nav{position:absolute;bottom:40px;width:100%;text-align:center}
+.nav-menu{display:inline-flex;gap:80px;flex-wrap:wrap;justify-content:center}
+.nav-menu a{color:#00ff41;font-size:clamp(2.2rem,6vw,5rem);padding:15px 50px;border:8px double #00ff41;background:rgba(0,40,0,.6);border-radius:20px;text-decoration:none;transition:.6s}
+.nav-menu a:hover{background:#00ff41;color:#000;transform:scale(1.4)}
+.pago-fijo{position:fixed;top:20px;right:20px;background:#00ff41;color:#000;width:120px;height:120px;border-radius:50%;font-size:7rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 140px #00ff41;z-index:9999;animation:p 2s infinite;cursor:pointer;border:6px solid #fff}
+.pago-fijo:hover{transform:scale(1.3)}
+.carrito{position:fixed;top:120px;right:15px;background:#001a00;border:14px double #00ff41;border-radius:40px;padding:35px 30px;width:92vw;max-width:500px;box-shadow:0 0 200px #00ff41;z-index:9998;display:none;transform:scale(0.95)}
+.carrito.show{display:block;animation:pop 0.5s forwards}
+@keyframes pop{to{transform:scale(1)}}
+.cerrar-carrito{position:absolute;top:12px;right:15px;background:#00ff41;color:#000;width:60px;height:60px;border-radius:50%;font-size:4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 60px #00ff41}
+.carrito h3{font-size:clamp(3.5rem,9vw,6rem);color:#00ff41;text-align:center;margin-bottom:25px;text-shadow:0 0 60px #00cc00}
+.item-carrito{color:#b3ffcc;font-size:2.8rem;padding:12px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #004400}
+.eliminar-item{color:#ff0044;font-size:3.8rem;cursor:pointer}
+.total{color:#00ff41;font-size:5rem;font-weight:900;text-align:center;margin:25px 0;text-shadow:0 0 80px #00cc00}
+.yape-btn{background:#00a86b;color:#fff;padding:18px 30px;border-radius:50px;font-size:3.2rem;margin:20px auto;display:block;width:92%;max-width:400px;cursor:pointer;box-shadow:0 0 100px #00ff41;transition:.4s;text-align:center}
+.yape-btn:hover{background:#00ff41;color:#000;transform:scale(1.07)}
+.qr{max-width:360px;width:90vw;height:auto;border:16px double #00ff41;border-radius:40px;box-shadow:0 0 220px #00ff41;margin:25px auto;display:block}
+.section{padding:140px 5%;text-align:center}
+.section h2{font-size:clamp(5rem,14vw,11rem);color:#00ff41;text-shadow:0 0 100px #00cc00;margin-bottom:80px}
+.info{font-size:clamp(2rem,6vw,4rem);line-height:2.5;color:#b3ffcc}
+.info strong{color:#00ff41;text-shadow:0 0 60px #00cc00}
+.carta{display:flex;flex-wrap:wrap;justify-content:center;gap:60px;margin-top:50px}
+.plato{background:rgba(0,40,0,.8);padding:30px;border-radius:50px;border:12px double #00ff41;transition:.6s;cursor:pointer}
+.plato:hover{transform:translateY(-25px);box-shadow:0 0 300px #00ff41}
+.plato img{width:100%;height:380px;object-fit:cover;border-radius:40px}
+.plato h3{font-size:clamp(3rem,9vw,6.5rem);color:#00ff41;text-shadow:0 0 60px #00cc00;margin:20px 0}
+.precio{font-size:4rem;color:#00ff41}
+.whatsapp{position:fixed;right:25px;bottom:25px;background:#00ff41;color:#000;padding:25px 55px;border-radius:150px;font-size:3rem;box-shadow:0 0 180px #00ff41;z-index:999;animation:p 2s infinite}
+.whatsapp:hover{transform:scale(1.4)}
+@keyframes g{from{text-shadow:0 0 60px #00cc00}to{text-shadow:0 0 180px #00ff41}}
+@keyframes p{0%,100%{box-shadow:0 0 140px #00ff41}50%{box-shadow:0 0 280px #00cc00}}
+</style>
+</head>
+<body>
+
+<div class="pago-fijo" onclick="toggleCarrito()">S/</div>
+
+<div class="carrito" id="carrito">
+    <div class="cerrar-carrito" onclick="cerrarCarrito()">X</div>
+    <h3>TU PEDIDO</h3>
+    <div id="items"></div>
+    <div class="total">Total: S/ <span id="total">0</span></div>
+    <div class="yape-btn" onclick="pagarConYape()">YAPEAR S/ <span id="totalBtn">0</span></div>
+    <img src="img/qr-yape.jpg" class="qr" alt="QR Yape">
+    <small style="color:#b3ffcc;font-size:2.4rem;display:block;margin-top:15px;text-align:center;">
+        O directo al: <strong>940 365 028</strong>
+    </small>
+</div>
+
+<div class="hero">
+    <h1>THE KINGDOM</h1>
+    <div class="_subtitle">OF FOOD</div>
+    <nav><div class="nav-menu">
+        <a href="#home">HOME</a>
+        <a href="#carta">CARTA</a>
+        <a href="#reservas">RESERVAS</a>
+    </div></nav>
+</div>
+
+<div class="section" id="home">
+    <h2>WELCOME TO THE KINGDOM</h2>
+    <div class="info">
+        Delivery a todo <strong>ATE VITARTE</strong> y alrededores · Recojo en local<br><br>
+        Desde <strong>S/ 150</strong> por persona · Lunes a Sábado 12:00 – 18:00<br><br>
+        <strong>Dirección:</strong> Av. Separadora Industrial 1989 · Frente al grifo Repsol<br><br>
+        Pedidos con 24h de anticipación<br><br>
+        <strong style="font-size:5.5rem;">+51 940 365 028</strong>
+    </div>
+</div>
+
+<div class="section" id="carta">
+    <h2>CARTA</h2>
+    <div class="carta">
+        <div class="plato" onclick="agregar('SUSPIRO REAL',15)">
+            <img src="img/suspiro-real.jpg" alt="Suspiro Real">
+            <h3>SUSPIRO REAL</h3><div class="precio">S/ 15</div>
+        </div>
+        <div class="plato" onclick="agregar('CEVICHE DEL REINO',25)">
+            <img src="img/ceviche-reino.jpg" alt="Ceviche del Reino">
+            <h3>CEVICHE DEL REINO</h3><div class="precio">S/ 25</div>
+        </div>
+        <div class="plato" onclick="agregar('LOMO SALTADO IMPERIAL',35)">
+            <img src="img/lomo-saltado.jpg" alt="Lomo Saltado Imperial">
+            <h3>LOMO SALTADO IMPERIAL</h3><div class="precio">S/ 35</div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="reservas">
+    <h2>RESERVAS & DELIVERY</h2>
+    <div class="info">
+        Solo por WhatsApp · Respuesta inmediata<br><br>
+        <strong style="font-size:7rem;">+51 940 365 028</strong>
+    </div>
+</div>
+
+<a href="https://wa.me/51940365028" class="whatsapp" target="_blank">RESERVAR / PEDIR</a>
+
+<script>
+let carrito=[],total=0;
+function agregar(n,p){carrito.push({n,p});total+=p;document.getElementById('carrito').classList.add('show');actualizar()}
+function eliminar(i){total-=carrito[i].p;carrito.splice(i,1);actualizar();if(!carrito.length)cerrarCarrito()}
+function actualizar(){
+    let h='';carrito.forEach((e,i)=>h+=`<div class="item-carrito">${e.n} <span>S/ ${e.p}</span> <span class="eliminar-item" onclick="eliminar(${i})">X</span></div>`);
+    document.getElementById('items').innerHTML=h||'<p style="color:#006600;font-size:2.8rem;text-align:center;margin:30px">Carrito vacío</p>';
+    document.getElementById('total').innerText=total;document.getElementById('totalBtn').innerText=total;
+}
+function cerrarCarrito(){document.getElementById('carrito').classList.remove('show')}
+function toggleCarrito(){if(carrito.length)document.getElementById('carrito').classList.toggle('show')}
+function pagarConYape(){if(total===0)return alert('Agrega algo primero');window.open(`https://wa.me/51940365028?text=${encodeURIComponent('Hola The Kingdom of Food! Pago mi pedido: S/ '+total+'.00')}`,'_blank')}
+</script>
+</body>
+</html>
