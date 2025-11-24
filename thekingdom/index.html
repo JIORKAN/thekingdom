@@ -19,7 +19,7 @@ nav{position:absolute;bottom:40px;width:100%;text-align:center}
 .pago-fijo{position:fixed;top:20px;right:20px;background:#00ff41;color:#000;width:120px;height:120px;border-radius:50%;font-size:7rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 140px #00ff41;z-index:9999;animation:p 2s infinite;cursor:pointer;border:6px solid #fff}
 .pago-fijo:hover{transform:scale(1.3)}
 .carrito{position:fixed;top:120px;right:15px;background:#001a00;border:14px double #00ff41;border-radius:40px;padding:35px 30px;width:92vw;max-width:500px;box-shadow:0 0 200px #00ff41;z-index:9998;display:none;transform:scale(0.95)}
-.carrito.show{display:block;animation:pop 0.5s forwards}
+.carrito.show{display:block;animation:pop .5s forwards}
 @keyframes pop{to{transform:scale(1)}}
 .cerrar-carrito{position:absolute;top:12px;right:15px;background:#00ff41;color:#000;width:60px;height:60px;border-radius:50%;font-size:4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 60px #00ff41}
 .carrito h3{font-size:clamp(3.5rem,9vw,6rem);color:#00ff41;text-align:center;margin-bottom:25px;text-shadow:0 0 60px #00cc00}
@@ -55,7 +55,7 @@ nav{position:absolute;bottom:40px;width:100%;text-align:center}
     <div id="items"></div>
     <div class="total">Total: S/ <span id="total">0</span></div>
     <div class="yape-btn" onclick="pagarConYape()">YAPEAR S/ <span id="totalBtn">0</span></div>
-    <img src="img/qr-yape.jpg" class="qr" alt="QR Yape">
+    <img src="img/KBtLjQb.jpeg" class="qr" alt="QR Yape">
     <small style="color:#b3ffcc;font-size:2.4rem;display:block;margin-top:15px;text-align:center;">
         O directo al: <strong>940 365 028</strong>
     </small>
@@ -86,15 +86,15 @@ nav{position:absolute;bottom:40px;width:100%;text-align:center}
     <h2>CARTA</h2>
     <div class="carta">
         <div class="plato" onclick="agregar('SUSPIRO REAL',15)">
-            <img src="img/suspiro-real.jpg" alt="Suspiro Real">
+            <img src="img/MagFmEv.jpeg" alt="Suspiro Real">
             <h3>SUSPIRO REAL</h3><div class="precio">S/ 15</div>
         </div>
         <div class="plato" onclick="agregar('CEVICHE DEL REINO',25)">
-            <img src="img/ceviche-reino.jpg" alt="Ceviche del Reino">
+            <img src="img/h6fdx3g.jpeg" alt="Ceviche del Reino">
             <h3>CEVICHE DEL REINO</h3><div class="precio">S/ 25</div>
         </div>
         <div class="plato" onclick="agregar('LOMO SALTADO IMPERIAL',35)">
-            <img src="img/lomo-saltado.jpg" alt="Lomo Saltado Imperial">
+            <img src="img/4pueW0A.jpeg" alt="Lomo Saltado Imperial">
             <h3>LOMO SALTADO IMPERIAL</h3><div class="precio">S/ 35</div>
         </div>
     </div>
@@ -124,5 +124,4 @@ function toggleCarrito(){if(carrito.length)document.getElementById('carrito').cl
 function pagarConYape(){if(total===0)return alert('Agrega algo primero');window.open(`https://wa.me/51940365028?text=${encodeURIComponent('Hola The Kingdom of Food! Pago mi pedido: S/ '+total+'.00')}`,'_blank')}
 </script>
 </body>
-
 </html>
